@@ -1,5 +1,7 @@
 from flask import Flask, render_template_string
 import folium
+import pandas as pd
+
 
 app = Flask(__name__)
 
@@ -33,8 +35,7 @@ def index():
 
 
 if __name__ == '__main__':
+    
     app.run(debug=True)
+    
 
-
-
-# nikhil is a loser. :()
