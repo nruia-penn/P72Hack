@@ -181,7 +181,8 @@ def realtime_series():
     cumulative_total = defaultdict(lambda: {"vehicles": 0, "revenue": 0})
 
     for i in range(num_frames):
-        frame_start = start_time + timedelta(seconds=i)
+        frame_duration = interval_duration.total_seconds() / num_frames
+        frame_start = start_time + timedelta(seconds=(i * frame_duration))
         frame_data = {
             "timestamp": frame_start.strftime("%Y-%m-%d %H:%M:%S"),
             "scale": 1,
