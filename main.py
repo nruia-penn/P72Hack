@@ -188,10 +188,6 @@ def realtime_series():
             "scale": 1,
             "locations": {}
         }
-
-        start_idx = int(i * blocks_per_frame)
-        end_idx = int((i + 1) * blocks_per_frame)
-        fractional = (i + 1) * blocks_per_frame - end_idx
         # always pull the block the frame overlaps with
         block_index = int(i * blocks_per_frame)
         if block_index < len(all_block_times):
