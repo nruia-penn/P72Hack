@@ -112,7 +112,7 @@ def get_filtered_data():
 
 
 
-# Mapping interval keys to number of 10-min blocks and animation duration in seconds
+# mapping interval keys to number of 10-min blocks and animation duration in seconds
 INTERVAL_CONFIG = {
     "10min":   {"blocks": 1, "duration": 3},
     "30min":   {"blocks": 3, "duration": 6},
@@ -146,7 +146,7 @@ def realtime_series():
     interval_duration = block_duration * num_blocks
     end_time = start_time + interval_duration
 
-    # Query 10-minute blocks in range
+    # query 10-minute blocks in range
     rows = db.session.query(
         TrafficEntry.vehicle_class,
         TrafficEntry.is_peak,
@@ -192,12 +192,12 @@ def realtime_series():
         start_idx = int(i * blocks_per_frame)
         end_idx = int((i + 1) * blocks_per_frame)
         fractional = (i + 1) * blocks_per_frame - end_idx
-        # Always pull the block the frame overlaps with
+        # always pull the block the frame overlaps with
         block_index = int(i * blocks_per_frame)
         if block_index < len(all_block_times):
             block_time = all_block_times[block_index]
-            portion = blocks_per_frame  # portion of block assigned to each frame
-            frame_fraction = min(1.0, portion)  # cap at 1.0 just in case
+            portion = blocks_per_frame
+            frame_fraction = portion  # cap at 1.0 just in case
 
             for location, classes in block_map[block_time].items():
                 if location not in frame_data["locations"]:
@@ -226,7 +226,7 @@ def realtime_series():
                     cumulative_total[location]["vehicles"] += vcount
                     cumulative_total[location]["revenue"] += vrevenue
 
-        # Finalize cumulative and round values after updating all data
+        # finalize cumulative and round values after updating all data
         for location in frame_data["locations"]:
             cumulative_by_class = {
                 vclass: {
