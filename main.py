@@ -197,7 +197,7 @@ def realtime_series():
         if block_index < len(all_block_times):
             block_time = all_block_times[block_index]
             portion = blocks_per_frame
-            frame_fraction = portion  # cap at 1.0 just in case
+            frame_fraction = portion
 
             for location, classes in block_map[block_time].items():
                 if location not in frame_data["locations"]:
