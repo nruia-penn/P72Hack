@@ -193,10 +193,6 @@ def realtime_series():
         fractional = (i + 1) * blocks_per_frame - end_idx
         # Always pull the block the frame overlaps with
         block_index = int(i * blocks_per_frame)
-        print(block_index)
-        print(i)
-        print(blocks_per_frame)
-        print("new block index")
         if block_index < len(all_block_times):
             block_time = all_block_times[block_index]
             portion = blocks_per_frame  # portion of block assigned to each frame
